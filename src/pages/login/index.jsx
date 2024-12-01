@@ -14,13 +14,15 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const { control, handleSubmit, formState: { errors  } } = useForm({
+    const { control, handleSubmit, formState: { errors  } } = useForm({        
         reValidateMode: 'onChange',
         mode: 'onChange',
     });
 
     const onSubmit = async (formData) => {
+        console.log('Entrei no método');
         try{
+            console.log('Entrei try');
             const {data} = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
             
             if(data.length && data[0].id){
@@ -30,6 +32,7 @@ const Login = () => {
 
             alert('Usuário ou senha inválido')
         }catch(e){
+            console.log('Entrei no catch');            
             //TODO: HOUVE UM ERRO
         }
     };
